@@ -1,0 +1,44 @@
+---
+- name: Getting System Info
+  hosts: localhost
+  vars:
+      msg: |
+       Architecture: {{ ansible_architecture }}
+       Kernel: {{ ansible_kernel }}
+       CPU: {{ ansible_processor }}
+       Memory: {{ ansible_memtotal_mb }}
+       Disks: {{ ansible_facts.devices }}
+       MAC: {{ ansible_default_ipv4. macaddress }}
+       DNS: {{ ansible_dns }}
+       All Interface List: {{ ansible_interfaces }}
+       Current Date: {{ ansible_date_time.date }}
+       Current Time: {{ ansible_date_time.time }}
+       Timezone: {{ansible_date_time.tz }}
+       Ansible Version: {{ ansible_distribution_version }}
+       Ansible Python Interpreter: {{ ansible_python.executable }}
+       Current User: {{ ansible_user_id }}
+       Environment Variables: {{ ansible_env }}
+       Specific ENV: {{ ansible_env.PATH }}
+       
+  tasks:
+          - name: Hostname
+            debug:
+                    msg: "{{ ansible_hostname }}"
+
+          - name: FQDN
+            debug:
+                    msg: "{{ ansible_fqdn }}"
+
+          - name: IP Address
+            debug:
+                    msg: "{{ ansible_default_ipv4.address }}"
+
+          - name: Operating System
+            debug:
+                    msg: "{{ ansible_distribution }}"
+
+          - name: Architecture
+            debug:
+                    msg: "{{ ansible_architecture }}"
+
+    
